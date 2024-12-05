@@ -1,7 +1,5 @@
 <template>
-  <div>
-    <div>topic</div>
-  </div>
+  <div></div>
 </template>
 
 <script setup></script>
