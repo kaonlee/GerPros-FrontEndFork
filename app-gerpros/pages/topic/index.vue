@@ -7,6 +7,8 @@
       </div>
     </div>
 
+    <TopicCard></TopicCard>
+
     <div class="join mt-4">
       <button class="join-item btn btn-md">1</button>
       <button class="join-item btn btn-md btn-active">2</button>
