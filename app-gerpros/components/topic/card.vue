@@ -1,6 +1,6 @@
 <template>
   <!-- TODO: Min width -->
-  <div class="card sm:card-side bg-base-300 shadow-xl m-4">
+  <div class="card lg:card-side lg:w-[80vw] bg-base-300 shadow-xl mt-4">
     <figure>
       <img :src="props.image.src" :alt="props.image.alt" />
     </figure>
