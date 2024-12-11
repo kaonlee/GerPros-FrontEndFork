@@ -10,28 +10,33 @@
         class="productions-wrapper grid grid-cols-1 md:grid-cols-3 lg:grid-cols-2 gap-10 mx-16"
       >
         <ProductCard
-          v-for="product in productionsData"
+          v-for="product in productionsItems"
           :key="product.name"
           :production="product"
           @search-series="searchSeries"
           @search-brand="searchBrand"
         />
       </div>
-      <span @click="goTo({ pageNumber: 2 })">2</span>
+      <span @click="goTo({ pageNumber: 2 })">{{ productionsTotalPages }}</span>
     </template>
   </NuxtLayout>
 </template>
 
 <script setup>
-const TEST_PRODUCTIONS_LIST = ref({});
-const productionsData = computed(() => {
-  const productions = TEST_PRODUCTIONS_LIST.value.items;
+import { TEST_PRODUCTIONS_LIST } from '~/constants';
+
+const productionsRawData = ref({});
+const productionsItems = computed(() => {
+  const productions = productionsRawData.value.items;
   return productions?.map((production) => {
     return {
       ...production,
       image: '/image/about-us-photo-2.webp',
     };
   });
+});
+const productionsTotalPages = computed(() => {
+  return productionsRawData.value.totalPages;
 });
 const searchedKeyWord = useState('searchedKeyWord');
 const searchedBrand = useState('searchedBrand');
@@ -59,36 +64,26 @@ async function goTo({ pageNumber = 1, brand, series }) {
   await fetchData();
 }
 
-// async function fetchData() {
-//   const route = useRoute();
-//   const { PageNumber, Brand, Series } = route.query;
-//   const params = {
-//     PageSize: 12, // 固定參數
-//   };
-//   params.PageNumber = PageNumber ?? 1;
-//   if (Brand) {
-//     params.Brand = Brand;
-//   }
-//   if (Series) {
-//     params.Series = Series;
-//   }
-
-//   const { data } = await useApiFetch('/ProductItems', {
-//     params,
-//   });
-
-//   if (data.value) {
-//     TEST_PRODUCTIONS_LIST.value = data.value;
-//   }
-// }
-
 async function fetchData() {
-  TEST_PRODUCTIONS_LIST.value = await $fetch(
-    'http://localhost:8080/api/ProductItems?PageNumber=1&PageSize=12',
-    {
-      method: 'GET',
-    },
-  );
+  const route = useRoute();
+  const { PageNumber, Brand, Series } = route.query;
+  const params = {
+    PageSize: 12, // 固定參數
+  };
+  params.PageNumber = PageNumber ?? 1;
+  if (Brand) {
+    params.Brand = Brand;
+  }
+  if (Series) {
+    params.Series = Series;
+  }
+
+  const data = await useApiFetch('/ProductItems', {
+    params,
+  });
+  console.log('🚀 ~ fetchData ~ data:', data);
+
+  productionsRawData.value = data ?? TEST_PRODUCTIONS_LIST;
 }
 
 function toggleSearch(value, searchField) {
