@@ -13,7 +13,7 @@
           {{ option.label }}
         </div>
       </div>
-      <div class="title font-bold gap-2">
+      <div class="title font-bold gap-2" :class="{ 'text-xl': !isStory }">
         <h2
           v-for="(title, index) in contentData[selectedOption].title"
           :key="index"
