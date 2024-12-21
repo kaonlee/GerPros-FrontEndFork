@@ -2,18 +2,30 @@
   <div class="article-wrapper">
     <div class="cover-wrapper w-full h-96 bg-red-300">
       <div class="contact-us">
-        <h2 class="zh">主題專欄</h2>
-        <h3 class="eng">TOPIC</h3>
+        <h2 class="zh">
+          主題專欄
+        </h2>
+        <h3 class="eng">
+          TOPIC
+        </h3>
       </div>
     </div>
 
-    <TopicCard></TopicCard>
+    <TopicCard />
 
     <div class="join mt-4">
-      <button class="join-item btn btn-md">1</button>
-      <button class="join-item btn btn-md btn-active">2</button>
-      <button class="join-item btn btn-md">3</button>
-      <button class="join-item btn btn-md">4</button>
+      <button class="join-item btn btn-md">
+        1
+      </button>
+      <button class="join-item btn btn-md btn-active">
+        2
+      </button>
+      <button class="join-item btn btn-md">
+        3
+      </button>
+      <button class="join-item btn btn-md">
+        4
+      </button>
     </div>
   </div>
 </template>

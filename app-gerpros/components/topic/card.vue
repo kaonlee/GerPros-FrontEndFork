@@ -2,13 +2,20 @@
   <!-- TODO: Min width -->
   <div class="card lg:card-side lg:w-[80vw] bg-base-300 shadow-xl mt-4">
     <figure>
-      <img :src="props.image.src" :alt="props.image.alt" />
+      <img
+        :src="props.image.src"
+        :alt="props.image.alt"
+      >
     </figure>
     <div class="card-body">
-      <h2 class="card-title">{{ props.title }}</h2>
+      <h2 class="card-title">
+        {{ props.title }}
+      </h2>
       <p>{{ props.summary }}</p>
       <div class="card-actions justify-end">
-        <button class="btn btn-primary">閱讀更多</button>
+        <button class="btn btn-primary">
+          閱讀更多
+        </button>
       </div>
     </div>
   </div>
